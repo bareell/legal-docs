@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WALLPAPER APP – High-Quality Wallpapers for Your Device</title>
+  <meta name="description" content="WALLPAPER APP offers a curated, high-quality wallpaper collection with weekly updates, HD and 4K images, and a clean experience." />
+  <style>
+    :root {
+      --bg: #050816;
+      --card: #0f172a;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.55);
+      --radius-xl: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 40%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 32px 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1040px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, rgba(15,23,42,0.96), rgba(15,23,42,0.93));
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 28px 24px 22px;
+      backdrop-filter: blur(16px);
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 26px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: radial-gradient(circle at 30% 0, #38bdf8, #6366f1 40%, #0f172a 75%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.5);
+    }
+
+    .title-block h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .title-block p {
+      margin-top: 2px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 360px;
+    }
+
+    .tagline {
+      font-size: 0.8rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.4fr);
+      gap: 22px;
+    }
+
+    @media (max-width: 880px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    h2 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .section {
+      margin-bottom: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 16px 16px 14px;
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 65%);
+    }
+
+    .section.secondary {
+      background: radial-gradient(circle at top, var(--accent-soft), transparent 70%);
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.85rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn-primary {
+      border-color: rgba(56, 189, 248, 0.9);
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      border-color: #38bdf8;
+    }
+
+    .btn-outline {
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--muted);
+    }
+
+    .btn-outline:hover {
+      background: rgba(15, 23, 42, 1);
+    }
+
+    .bullets {
+      list-style: none;
+      margin-top: 8px;
+      display: grid;
+      gap: 6px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .bullets li {
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .bullets li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 0.6em;
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.9);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .chip {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .preview-card {
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.96);
+      padding: 14px 14px 12px;
+    }
+
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .preview-tile {
+      aspect-ratio: 9 / 16;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #020617, #111827);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      position: relative;
+      overflow: hidden;
+      font-size: 0.65rem;
+      padding: 6px;
+      color: var(--muted);
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .preview-tile:nth-child(1) {
+      background: linear-gradient(145deg, #0f172a, #1e293b);
+    }
+
+    .preview-tile:nth-child(2) {
+      background: radial-gradient(circle at top, #38bdf8, #020617);
+    }
+
+    .preview-tile:nth-child(3) {
+      background: radial-gradient(circle at bottom, #6366f1, #020617);
+    }
+
+    .note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    a.link {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a.link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 14px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+      <header>
+        <div class="brand">
+          <div class="logo">W</div>
+          <div class="title-block">
+            <h1>WALLPAPER APP</h1>
+            <p>High-quality wallpapers, a clean interface, and weekly updated collections for your device.</p>
+          </div>
+        </div>
+        <div class="tagline">Marketing page for WALLPAPER APP</div>
+      </header>
+
+      <main>
+        <section>
+          <div class="section">
+            <h2>High-quality wallpapers for a personal home screen</h2>
+            <p>
+              WALLPAPER APP is designed for users who want a simple, focused and high-quality way to personalise
+              their device. The app offers a curated wallpaper library with HD, 4K, 3D and live styles that work
+              seamlessly on modern phones.
+            </p>
+            <ul class="bullets">
+              <li>Curated library with HD and 4K wallpapers.</li>
+              <li>Minimal, abstract, nature, city, sport and automotive themes.</li>
+              <li>Weekly content updates with fresh collections.</li>
+              <li>Simple interface focused on a clean browsing experience.</li>
+              <li>Optimised to keep battery usage and storage impact low.</li>
+            </ul>
+
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#" target="_blank" rel="noopener">
+                View on the App Store
+              </a>
+              <a class="btn btn-outline" href="wallpaper-app-support.html" target="_blank" rel="noopener">
+                Support and contact
+              </a>
+            </div>
+
+            <div class="meta-row">
+              <span class="chip">Weekly updates</span>
+              <span class="chip">HD / 4K / 3D</span>
+              <span class="chip">Focused on a clean look</span>
+            </div>
+          </div>
+
+          <div class="section secondary">
+            <h2>Designed for a calm and consistent experience</h2>
+            <p>
+              The goal of WALLPAPER APP is to offer a straightforward way to change the look of your device without
+              distractions. No complex menus, no unnecessary steps. Open the app, browse categories, and set a new
+              wallpaper in a few taps.
+            </p>
+          </div>
+        </section>
+
+        <aside>
+          <div class="preview-card">
+            <div class="preview-header">
+              <span>Preview layout</span>
+              <span>Example screens</span>
+            </div>
+            <div class="preview-grid">
+              <div class="preview-tile">
+                <span>Home</span>
+              </div>
+              <div class="preview-tile">
+                <span>Collections</span>
+              </div>
+              <div class="preview-tile">
+                <span>Details</span>
+              </div>
+            </div>
+            <p class="note">
+              These previews illustrate the type of visual experience WALLPAPER APP aims to provide:
+              a dark, focused interface that highlights the wallpapers themselves. Final visuals may vary
+              between versions and platforms.
+            </p>
+          </div>
+
+          <div style="margin-top: 14px;">
+            <p class="note">
+              For privacy details, please see the
+              <a class="link" href="wallpaper-app-privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
+              For terms of use, visit the
+              <a class="link" href="wallpaper-app-terms.html" target="_blank" rel="noopener">Terms page</a>.
+            </p>
+          </div>
+        </aside>
+      </main>
+
+      <footer>
+        © <span id="year"></span> WALLPAPER APP. All rights reserved.
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
