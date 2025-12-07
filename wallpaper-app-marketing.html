@@ -100,15 +100,7 @@
     }
 
     main {
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.4fr);
-      gap: 22px;
-    }
-
-    @media (max-width: 880px) {
-      main {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      display: block;
     }
 
     h2 {
@@ -216,55 +208,6 @@
       background: rgba(15, 23, 42, 0.96);
     }
 
-    .preview-card {
-      border-radius: 18px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.96);
-      padding: 14px 14px 12px;
-    }
-
-    .preview-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
-    .preview-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-
-    .preview-tile {
-      aspect-ratio: 9 / 16;
-      border-radius: 12px;
-      background: linear-gradient(145deg, #020617, #111827);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      position: relative;
-      overflow: hidden;
-      font-size: 0.65rem;
-      padding: 6px;
-      color: var(--muted);
-      display: flex;
-      align-items: flex-end;
-    }
-
-    .preview-tile:nth-child(1) {
-      background: linear-gradient(145deg, #0f172a, #1e293b);
-    }
-
-    .preview-tile:nth-child(2) {
-      background: radial-gradient(circle at top, #38bdf8, #020617);
-    }
-
-    .preview-tile:nth-child(3) {
-      background: radial-gradient(circle at bottom, #6366f1, #020617);
-    }
-
     .note {
       font-size: 0.78rem;
       color: var(--muted);
@@ -281,7 +224,7 @@
     }
 
     footer {
-      margin-top: 14px;
+      margin-top: 10px;
       font-size: 0.75rem;
       color: var(--muted);
       text-align: right;
@@ -319,9 +262,9 @@
             </ul>
 
             <div class="cta-row">
-              <a class="btn btn-primary" href="#" target="_blank" rel="noopener">
+            <!--   <a class="btn btn-primary" href="#" target="_blank" rel="noopener">
                 View on the App Store
-              </a>
+              </a> -->
               <a class="btn btn-outline" href="wallpaper-app-support.html" target="_blank" rel="noopener">
                 Support and contact
               </a>
@@ -343,18 +286,14 @@
             </p>
           </div>
         </section>
-
-        <aside>
-          <div style="margin-top: 14px;">
-            <p class="note">
-              For privacy details, please see the
-              <a class="link" href="wallpaper-app-privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
-              For terms of use, visit the
-              <a class="link" href="wallpaper-app-terms.html" target="_blank" rel="noopener">Terms page</a>.
-            </p>
-          </div>
-        </aside>
       </main>
+
+      <p class="note" style="margin-top: 18px;">
+        For privacy details, please see the
+        <a class="link" href="wallpaper-app-privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
+        For terms of use, visit the
+        <a class="link" href="wallpaper-app-terms.html" target="_blank" rel="noopener">Terms page</a>.
+      </p>
 
       <footer>
         © <span id="year"></span> WALLPAPER APP. All rights reserved.
