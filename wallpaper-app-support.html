@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WALLPAPER APP - Support</title>
+  <meta name="description" content="Support, frequently asked questions, and contact information for WALLPAPER APP." />
+  <style>
+    :root {
+      --bg: #050816;
+      --card: #0f172a;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --error: #f97373;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.55);
+      --radius-xl: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 40%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 960px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, rgba(15,23,42,0.96), rgba(15,23,42,0.92));
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 24px;
+      backdrop-filter: blur(16px);
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .app-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .app-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      background: radial-gradient(circle at 30% 0, #38bdf8, #6366f1 40%, #0f172a 75%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: white;
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.5);
+    }
+
+    .app-text h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .app-text p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    h2 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .section-card {
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent 60%);
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+
+    .section-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+    }
+
+    .faq-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .faq-item {
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 10px 12px;
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      outline: none;
+      list-style: none;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "›";
+      float: right;
+      transform: rotate(90deg);
+      opacity: 0.7;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .faq-item[open] summary::after {
+      transform: rotate(-90deg);
+      opacity: 1;
+    }
+
+    .faq-item p {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .contact-card {
+      background: radial-gradient(circle at top right, var(--accent-soft), transparent 60%);
+      border-radius: 16px;
+      border: 1px solid rgba(56, 189, 248, 0.8);
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      border: 1px solid rgba(56, 189, 248, 0.7);
+      color: var(--accent);
+      background: rgba(15, 23, 42, 0.9);
+      margin-bottom: 6px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .contact-list li {
+      margin-bottom: 6px;
+    }
+
+    .contact-list span.label {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .small-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .status-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 13px;
+      border: 1px dashed rgba(148, 163, 184, 0.6);
+      padding: 10px 12px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+      color: #4ade80;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #4ade80;
+      box-shadow: 0 0 10px rgba(74, 222, 128, 0.8);
+    }
+
+    footer {
+      margin-top: 10px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="card">
+      <header>
+        <div class="app-info">
+          <div class="app-logo">
+            W
+          </div>
+          <div class="app-text">
+            <h1>WALLPAPER APP Support</h1>
+            <p>We’re here to help with any questions or issues about your wallpaper experience.</p>
+          </div>
+        </div>
+        <span class="tag">Support &amp; FAQ</span>
+      </header>
+
+      <main>
+        <!-- Left side: about + FAQ -->
+        <section>
+          <div class="section-card">
+            <h2>About the app</h2>
+            <p>
+              <strong>WALLPAPER APP</strong> is a simple and lightweight application designed to provide
+              high-resolution and dynamic wallpaper experiences for your device.
+            </p>
+            <div class="badge-row">
+              <span class="badge">HD &amp; 4K wallpapers</span>
+              <span class="badge">Low battery usage</span>
+              <span class="badge">Free updates</span>
+            </div>
+          </div>
+
+          <div class="section-card">
+            <h2>Frequently asked questions</h2>
+            <ul class="faq-list">
+              <li>
+                <details class="faq-item">
+                  <summary>Why isn’t the wallpaper being applied?</summary>
+                  <p>
+                    Please make sure your device’s operating system is up to date.
+                    Check the app permissions (storage, photos, etc.). If the issue continues,
+                    try closing the app completely and reopening it.
+                  </p>
+                </details>
+              </li>
+              <li>
+                <details class="faq-item">
+                  <summary>The app is draining too much battery. What can I do?</summary>
+                  <p>
+                    Live or animated wallpapers can increase battery usage. You can reduce
+                    the animation speed in the settings menu or switch to a static wallpaper mode.
+                  </p>
+                </details>
+              </li>
+              <li>
+                <details class="faq-item">
+                  <summary>How often do you add new wallpapers?</summary>
+                  <p>
+                    We try to add new collections regularly. If your app is up to date,
+                    new content will automatically appear in the list.
+                  </p>
+                </details>
+              </li>
+              <li>
+                <details class="faq-item">
+                  <summary>I see ads, is this normal?</summary>
+                  <p>
+                    We show a limited number of ads to cover development and maintenance costs.
+                    We’ve tried to keep them as unobtrusive as possible.
+                  </p>
+                </details>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Right side: contact & status -->
+        <aside>
+          <div class="contact-card">
+            <div class="pill">
+              <span>Contact</span>
+            </div>
+            <h2>Get in touch with support</h2>
+            <ul class="contact-list">
+              <li>
+                <span class="label">Email:</span>
+                <a href="mailto:barbaros.ihtiyar.developerr@gmail.com">barbaros.ihtiyar.developerr@gmail.com</a>
+              </li>
+              <li>
+                <span class="label">Feedback:</span>
+                You can use the in-app “Get Help” menu.
+              </li>
+            </ul>
+            <p class="small-note">
+              If possible, please include your device model, operating system version,
+              and the steps to reproduce the issue.
+            </p>
+          </div>
+
+          <div class="status-card">
+            <div class="status-pill">
+              <span class="status-dot"></span>
+              <span>Status: Online &amp; actively developed</span>
+            </div>
+            <p>
+              The app is still under active development. Your bug reports and suggestions
+              are highly valuable for future releases.
+            </p>
+          </div>
+
+        </aside>
+      </main>
+
+      <footer>
+        © <span id="year"></span> WALLPAPER APP • All rights reserved.
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Automatically update year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
