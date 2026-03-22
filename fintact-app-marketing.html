@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Fintact – Personal Finance Tracker</title>
+
+  <meta
+    name="description"
+    content="Track your income and expenses with Fintact. A simple, modern, and easy-to-use personal finance tracking app."
+  />
+  <meta name="theme-color" content="#0fb37d" />
+
+  <meta property="og:title" content="Fintact – Personal Finance Tracker" />
+  <meta
+    property="og:description"
+    content="A simple, fast, and modern app for tracking your personal finances."
+  />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg:#0b1020;
+      --bg-soft:#121933;
+      --card:#0f152b;
+      --text:#edf3ff;
+      --muted:#9fb0cc;
+      --brand:#00d39b;
+      --brand-2:#6ae2c2;
+      --stroke:rgba(255,255,255,.08);
+      --shadow:0 12px 30px rgba(0,0,0,.35);
+      --radius:20px;
+      --container:1120px;
+    }
+
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f7f9fc;
+        --bg-soft:#eef4f7;
+        --card:#ffffff;
+        --text:#182033;
+        --muted:#60708a;
+        --brand:#00b37a;
+        --brand-2:#49deb6;
+        --stroke:rgba(0,0,0,.07);
+        --shadow:0 12px 24px rgba(16,24,40,.08);
+      }
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 90% -10%, rgba(0,211,155,.10), transparent 60%),
+        radial-gradient(900px 500px at -10% 0%, rgba(106,226,194,.10), transparent 60%),
+        var(--bg);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      padding:
+        env(safe-area-inset-top)
+        env(safe-area-inset-right)
+        env(safe-area-inset-bottom)
+        env(safe-area-inset-left);
+    }
+
+    a{color:inherit}
+    img{max-width:100%;display:block}
+
+    .container{
+      width:min(100% - 32px, var(--container));
+      margin-inline:auto;
+    }
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:30;
+      backdrop-filter: blur(14px);
+      background:rgba(11,16,32,.65);
+      border-bottom:1px solid var(--stroke);
+    }
+
+    @media (prefers-color-scheme: light){
+      .nav{ background:rgba(247,249,252,.75); }
+    }
+
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      min-height:74px;
+    }
+
+    .brand{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      letter-spacing:.2px;
+      text-decoration:none;
+    }
+
+    .brand-dot{
+      width:12px;
+      height:12px;
+      border-radius:999px;
+      background:linear-gradient(180deg,var(--brand),var(--brand-2));
+      box-shadow:0 0 0 6px rgba(0,211,155,.14);
+      flex:none;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:600;
+      font-size:.95rem;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:46px;
+      padding:12px 18px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:700;
+      border:1px solid transparent;
+      transition:transform .08s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:active{ transform:translateY(1px) scale(.99); }
+
+    .btn-primary{
+      color:#063b2a;
+      background:linear-gradient(180deg,var(--brand-2),var(--brand));
+      box-shadow:0 8px 22px rgba(0,211,155,.25);
+    }
+
+    .btn-secondary{
+      border-color:var(--stroke);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+    }
+
+    .hero{
+      padding:72px 0 42px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:30px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border:1px solid var(--stroke);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:.95rem;
+      font-weight:700;
+    }
+
+    h1{
+      margin:18px 0 14px;
+      font-size:clamp(2.2rem, 5vw, 4.4rem);
+      line-height:1.06;
+      letter-spacing:-.03em;
+    }
+
+    .lead{
+      margin:0 0 24px;
+      font-size:clamp(1rem, 1.5vw, 1.14rem);
+      color:var(--muted);
+      max-width:62ch;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .hero-note{
+      color:var(--muted);
+      font-size:.96rem;
+      margin:0;
+    }
+
+    .phone-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--stroke);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      padding:18px;
+      max-width:380px;
+      margin-inline:auto;
+    }
+
+    .phone{
+      aspect-ratio:9/19;
+      border-radius:26px;
+      overflow:hidden;
+      padding:16px;
+      background:
+        radial-gradient(circle at top right, rgba(0,211,155,.18), transparent 28%),
+        linear-gradient(180deg, #16203f 0%, #0d1328 100%);
+      position:relative;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .phone-notch{
+      width:42%;
+      height:26px;
+      background:#0a0f1d;
+      border-radius:0 0 18px 18px;
+      margin:0 auto 18px;
+    }
+
+    .mini-card{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:14px;
+      margin-bottom:12px;
+      color:#fff;
+    }
+
+    .mini-row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      margin-bottom:10px;
+    }
+
+    .mini-title{
+      font-weight:700;
+      font-size:.96rem;
+    }
+
+    .mini-sub{
+      font-size:.85rem;
+      color:rgba(255,255,255,.7);
+    }
+
+    .amount.plus{ color:#7ff0c7; font-weight:800; }
+    .amount.minus{ color:#ff9c9c; font-weight:800; }
+
+    .section{
+      padding:42px 0;
+    }
+
+    .section-head{
+      max-width:760px;
+      margin-bottom:24px;
+    }
+
+    .section-head h2{
+      margin:0 0 10px;
+      font-size:clamp(1.7rem, 3vw, 2.4rem);
+      line-height:1.15;
+      letter-spacing:-.02em;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), transparent 35%), var(--card);
+      border:1px solid var(--stroke);
+      border-radius:18px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .icon{
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      border-radius:14px;
+      background:rgba(0,211,155,.12);
+      border:1px solid rgba(0,211,155,.18);
+      font-size:1.35rem;
+      margin-bottom:14px;
+    }
+
+    .card h3{
+      margin:0 0 8px;
+      font-size:1.08rem;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .privacy{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .bullet-list{
+      display:grid;
+      gap:12px;
+      padding:0;
+      margin:16px 0 0;
+      list-style:none;
+    }
+
+    .bullet-list li{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      color:var(--muted);
+    }
+
+    .bullet-check{
+      width:24px;
+      height:24px;
+      border-radius:999px;
+      background:rgba(0,211,155,.12);
+      border:1px solid rgba(0,211,155,.18);
+      color:var(--brand-2);
+      display:grid;
+      place-items:center;
+      font-size:.9rem;
+      flex:none;
+      margin-top:1px;
+    }
+
+    .cta{
+      padding:56px 0 70px;
+    }
+
+    .cta-box{
+      background:
+        radial-gradient(700px 240px at 0% 0%, rgba(106,226,194,.12), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.03), transparent 35%),
+        var(--card);
+      border:1px solid var(--stroke);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:30px;
+      text-align:center;
+    }
+
+    .cta-box h2{
+      margin:0 0 10px;
+      font-size:clamp(1.8rem, 3vw, 2.6rem);
+      line-height:1.12;
+      letter-spacing:-.02em;
+    }
+
+    .cta-box p{
+      margin:0 auto 20px;
+      max-width:640px;
+      color:var(--muted);
+    }
+
+    .footer{
+      border-top:1px solid var(--stroke);
+      padding:22px 0 40px;
+      color:var(--muted);
+    }
+
+    .footer-row{
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+      text-align:center;
+    }
+
+    @media (max-width: 920px){
+      .hero-grid,
+      .privacy,
+      .grid-3,
+      .grid-2{
+        grid-template-columns:1fr;
+      }
+
+      .phone-card{
+        max-width:460px;
+      }
+    }
+
+    @media (max-width: 640px){
+      .nav-inner{
+        padding:10px 0;
+      }
+
+      .nav-links{
+        gap:12px;
+      }
+
+      .hero{
+        padding-top:42px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .btn{transition:none}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Fintact home">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Fintact</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main menu">
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#download">Overview</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">💸 A Smarter Way to Track Your Money</span>
+          <h1>Manage your income and expenses with clarity and simplicity.</h1>
+          <p class="lead">
+            Fintact is a modern personal finance tracker designed to help you record daily income,
+            monitor expenses, and better understand your financial habits without unnecessary complexity.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-secondary" href="mailto:barbaros.ihtiyar.developerr@gmail.com">Contact</a>
+          </div>
+
+          <p class="hero-note">
+            Simple records • Clean design • Local data structure • Focused experience
+          </p>
+        </div>
+
+        <div class="phone-card" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-notch"></div>
+
+            <div class="mini-card">
+              <div class="mini-row">
+                <div>
+                  <div class="mini-title">Monthly Summary</div>
+                  <div class="mini-sub">Overview</div>
+                </div>
+                <div class="amount plus">$2,450</div>
+              </div>
+              <div class="mini-row">
+                <span class="mini-sub">Income</span>
+                <span class="amount plus">+ $3,200</span>
+              </div>
+              <div class="mini-row" style="margin-bottom:0;">
+                <span class="mini-sub">Expenses</span>
+                <span class="amount minus">- $750</span>
+              </div>
+            </div>
+
+            <div class="mini-card">
+              <div class="mini-row">
+                <div>
+                  <div class="mini-title">Recent Activity</div>
+                  <div class="mini-sub">Today</div>
+                </div>
+              </div>
+              <div class="mini-row">
+                <span class="mini-sub">Groceries</span>
+                <span class="amount minus">- $48</span>
+              </div>
+              <div class="mini-row">
+                <span class="mini-sub">Freelance Payment</span>
+                <span class="amount plus">+ $420</span>
+              </div>
+              <div class="mini-row" style="margin-bottom:0;">
+                <span class="mini-sub">Transport</span>
+                <span class="amount minus">- $12</span>
+              </div>
+            </div>
+
+            <div class="mini-card" style="margin-bottom:0;">
+              <div class="mini-row" style="margin-bottom:0;">
+                <div>
+                  <div class="mini-title">Note</div>
+                  <div class="mini-sub">Stay consistent with your financial tracking</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head">
+          <h2>What you can do with Fintact</h2>
+          <p>
+            Everything you need for simple and effective personal finance tracking in one place.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">📝</div>
+            <h3>Quick Entry</h3>
+            <p>
+              Add income and expense records easily with amount, category, and description fields.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">📊</div>
+            <h3>Clear Financial Overview</h3>
+            <p>
+              View your total income, total expenses, and overall balance to better understand your money flow.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">📁</div>
+            <h3>Organized Tracking</h3>
+            <p>
+              Keep your financial activity structured and easy to review over time.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Why Fintact?</h2>
+          <p>
+            Fintact is built to make personal finance tracking easier, faster, and more focused.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <div class="icon">⚡</div>
+            <h3>Fast and simple experience</h3>
+            <p>
+              The app is designed for everyday personal use, allowing you to add and review records in just a few steps.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🎯</div>
+            <h3>Focused functionality</h3>
+            <p>
+              Fintact keeps things straightforward by focusing on the essentials of income and expense management.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="privacy">
+      <div class="container privacy">
+        <article class="card">
+          <div class="section-head" style="margin-bottom:0;">
+            <h2>Privacy-focused approach</h2>
+            <p>
+              Trust and transparency matter in every finance-related app experience.
+            </p>
+          </div>
+
+          <ul class="bullet-list">
+            <li>
+              <span class="bullet-check">✓</span>
+              <span>Your data is used only for the core functionality of the app.</span>
+            </li>
+            <li>
+              <span class="bullet-check">✓</span>
+              <span>No advertising, profiling, or tracking-based experience is intended.</span>
+            </li>
+            <li>
+              <span class="bullet-check">✓</span>
+              <span>The app is designed to help you manage your personal financial records with clarity.</span>
+            </li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="section-head" style="margin-bottom:0;">
+            <h2>Simple and transparent</h2>
+            <p>
+              Fintact is built to offer a clean and understandable personal finance experience.
+            </p>
+          </div>
+
+          <ul class="bullet-list">
+            <li>
+              <span class="bullet-check">✓</span>
+              <span>Easy-to-use interface for daily finance tracking.</span>
+            </li>
+            <li>
+              <span class="bullet-check">✓</span>
+              <span>Designed for personal, non-commercial use.</span>
+            </li>
+            <li>
+              <span class="bullet-check">✓</span>
+              <span>Built to support better awareness of spending and income habits.</span>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta" id="download">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Take control of your finances with Fintact.</h2>
+          <p>
+            Track your daily income and expenses, stay organized, and build better financial habits with a simple and modern experience.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>© 2026 Fintact. All rights reserved.</div>
+    </div>
+  </footer>
+</body>
+</html>
