@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Reviva Destek</title>
+  <meta name="description" content="Reviva destek ve iletişim sayfası. Fotoğraf restorasyonu, abonelik ve sıkça sorulan sorular için yardım." />
+  <meta name="theme-color" content="#34d2b6" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <style>
+    :root{
+      --bg:#0b1020; --bg-card:#0f152b; --txt:#eaf1ff; --muted:#9fb0cc;
+      --brand:#34d2b6; --brand-2:#7ae6cf; --accent:#f3b65a;
+      --stroke:rgba(255,255,255,.08); --shadow:0 10px 30px rgba(0,0,0,.35); --radius:18px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f7f9fc; --bg-card:#ffffff; --txt:#1d2433; --muted:#5a6b85;
+        --brand:#10b896; --brand-2:#38e1b4; --stroke:rgba(0,0,0,.06); --shadow:0 12px 24px rgba(16,24,40,.08); }
+    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(52,210,182,.10), transparent 60%),
+        radial-gradient(1000px 500px at -10% 0%, rgba(243,182,90,.08), transparent 60%),
+        var(--bg);
+      color:var(--txt); line-height:1.55; -webkit-font-smoothing:antialiased;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+    .wrap{ max-width:900px; margin:auto; padding:clamp(16px,2.5vw,28px); }
+    .card{ background:var(--bg-card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
+    .hero{
+      position:relative; padding:clamp(28px,5vw,48px);
+      background:
+        radial-gradient(1200px 500px at 10% 0%, rgba(52,210,182,.18), transparent 60%),
+        linear-gradient(135deg, rgba(52,210,182,.18), rgba(0,0,0,0) 40%), transparent;
+      border-bottom:1px solid var(--stroke);
+    }
+    .logo-badge{ display:inline-flex; align-items:center; gap:10px; padding:10px 14px;
+      border:1px solid var(--stroke); border-radius:999px; background:rgba(255,255,255,.04); font-weight:700; }
+    .logo-dot{ width:10px; height:10px; border-radius:999px;
+      background:linear-gradient(135deg,var(--brand),var(--accent)); box-shadow:0 0 0 4px rgba(52,210,182,.15); }
+    h1{ font-size:clamp(28px,4.5vw,40px); line-height:1.15; margin:16px 0 8px; letter-spacing:-.02em; }
+    .subtitle{ margin:0; color:var(--muted); font-size:clamp(14px,2.5vw,16px); }
+    .grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(14px,2vw,20px); padding:clamp(20px,3.2vw,28px); }
+    @media (max-width:720px){ .grid{ grid-template-columns:1fr; } }
+    .section{ padding:20px; border:1px solid var(--stroke); border-radius:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 30%); }
+    .section h2{ margin:0 0 8px; font-size:clamp(16px,2.6vw,18px); }
+    .section p{ margin:0 0 12px; color:var(--muted); }
+    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:12px 16px;
+      font-weight:700; text-decoration:none; color:#04221a;
+      background:linear-gradient(180deg, var(--brand-2), var(--brand)); border:none; border-radius:12px;
+      box-shadow:0 6px 18px rgba(52,210,182,.25); transition:transform .07s ease; }
+    .btn:active{ transform:translateY(1px) scale(.99); }
+    .kicker{ font-weight:700; font-size:.92rem; letter-spacing:.28px; color:var(--muted); text-transform:uppercase; }
+    .spacer{ height:8px; }
+    .faq{ padding:clamp(20px,3.2vw,28px); padding-top:0; }
+    details{ border:1px solid var(--stroke); border-radius:12px; padding:4px 14px; margin:10px 0;
+      background:rgba(255,255,255,.02); }
+    summary{ cursor:pointer; font-weight:600; padding:12px 0; list-style:none; }
+    summary::-webkit-details-marker{ display:none; }
+    summary::after{ content:"+"; float:right; color:var(--muted); font-weight:700; }
+    details[open] summary::after{ content:"–"; }
+    details p{ margin:0 0 14px; color:var(--muted); }
+    .footer{ padding:18px; border-top:1px solid var(--stroke); text-align:center; color:var(--muted); font-size:.95rem; }
+    a{ color:var(--brand); }
+    a.list-link{ display:flex; gap:8px; padding:10px 12px; text-decoration:none; color:var(--txt);
+      border:1px solid var(--stroke); border-radius:12px; background:rgba(255,255,255,.02); margin-top:8px; }
+    .list-link small{ color:var(--muted); }
+    a,button{ -webkit-tap-highlight-color:rgba(0,0,0,0); min-height:44px; }
+    @media (prefers-reduced-motion: reduce){ .btn{ transition:none; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <article class="card" role="region" aria-label="Reviva Destek">
+      <header class="hero">
+        <span class="logo-badge"><span class="logo-dot" aria-hidden="true"></span> Reviva</span>
+        <h1>Destek &amp; İletişim</h1>
+        <p class="subtitle">Fotoğraf restorasyonu, abonelik veya sonuçlarla ilgili her soruda yanınızdayız. Genellikle aynı gün dönüş yapıyoruz.</p>
+        <div class="spacer"></div>
+        <a class="btn"
+           href="mailto:barbaros.ihtiyar.developerr@gmail.com?subject=Reviva%20Destek%20Talebi&body=Merhaba%20Reviva%20Destek%2C%0A%0AUygulama%20S%C3%BCr%C3%BCm%C3%BC%3A%20%0ACihaz%3A%20%0AKonu%3A%20%0AA%C3%A7%C4%B1klama%3A%20%0A%0ATe%C5%9Fekk%C3%BCrler."
+           aria-label="Destek e-postası gönder">✉️ Destek ile İletişime Geç</a>
+      </header>
+
+      <section class="grid" aria-label="İletişim ve bağlantılar">
+        <div class="section">
+          <div class="kicker">İletişim</div>
+          <h2>📩 E-posta</h2>
+          <p>Sorularınız, geri bildirimleriniz ve abonelik talepleriniz için bize yazın.</p>
+          <a class="btn" href="mailto:barbaros.ihtiyar.developerr@gmail.com">barbaros.ihtiyar.developerr@gmail.com</a>
+        </div>
+
+        <div class="section">
+          <div class="kicker">Yasal</div>
+          <h2>🔗 Hızlı Linkler</h2>
+          <a class="list-link" href="reviva-app-privacy.html"><span>Gizlilik Politikası</span> <small>— Verileriniz nasıl işlenir</small></a>
+          <a class="list-link" href="reviva-app-terms.html"><span>Kullanım Koşulları</span> <small>— Hizmet şartları</small></a>
+        </div>
+      </section>
+
+      <section class="faq" aria-label="Sıkça Sorulan Sorular">
+        <div class="kicker">Sıkça Sorulan Sorular</div>
+        <details>
+          <summary>Reviva ne yapar?</summary>
+          <p>Reviva, eski veya hasarlı fotoğraflarınızı onarır, çözünürlüğü artırır (HD), siyah-beyaz fotoğrafları renklendirir ve tam restorasyon uygular. Fotoğrafınızı seçer, işlem türünü belirler ve sonucu saniyeler içinde görürsünüz.</p>
+        </details>
+        <details>
+          <summary>Fotoğraflarım güvende mi? Yapay zekâ eğitiminde kullanılıyor mu?</summary>
+          <p>Fotoğraflarınız yalnızca sizin başlattığınız işlemi gerçekleştirmek için güvenli bulut depolamaya yüklenir ve işlenir. Fotoğraflarınızı <strong>yapay zekâ modeli eğitiminde, reklamda veya profilleme amacıyla kullanmıyoruz</strong>. Detaylar için <a href="reviva-app-privacy.html">Gizlilik Politikası</a>.</p>
+        </details>
+        <details>
+          <summary>Sonuçlarım neden filigranlı / düşük çözünürlüklü?</summary>
+          <p>İşlemi ücretsiz başlatıp önizleme görebilirsiniz; tam çözünürlüklü (HD) ve filigransız sonucu indirmek için Premium aboneliği gerekir.</p>
+        </details>
+        <details>
+          <summary>Aboneliğimi nasıl yönetir veya iptal ederim?</summary>
+          <p>Abonelik App Store veya Google Play hesabınız üzerinden faturalandırılır. İptal ve yönetim işlemlerini cihazınızdaki mağaza hesabı ayarlarından yapabilirsiniz. Dönem sonundan en az 24 saat önce otomatik yenilemeyi kapatmazsanız abonelik otomatik yenilenir.</p>
+        </details>
+        <details>
+          <summary>İşlem başarısız oldu, ne yapmalıyım?</summary>
+          <p>Başarısız işlemlerde herhangi bir ücret/kredi düşülmez; tekrar deneyebilirsiniz. Sorun devam ederse cihaz modeli, uygulama sürümü ve kısa bir açıklama ile bize e-posta gönderin.</p>
+        </details>
+        <details>
+          <summary>Verilerimi veya hesabımı nasıl sildiririm?</summary>
+          <p>Uygulama içinden sonuçlarınızı silebilir, ya da hesabınızın ve yüklenen tüm fotoğraflarınızın tamamen silinmesi için bize e-posta yoluyla talep iletebilirsiniz.</p>
+        </details>
+      </section>
+
+      <footer class="footer">
+        <small>&copy; 2026 Reviva • Barbaros İhtiyar • Tüm hakları saklıdır.</small>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
