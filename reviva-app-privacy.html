@@ -50,7 +50,7 @@
   <main class="wrap">
     <span class="badge"><span class="dot"></span> Reviora</span>
     <h1>Privacy Policy</h1>
-    <p class="meta"><strong>Last updated:</strong> July 20, 2026</p>
+    <p class="meta"><strong>Last updated:</strong> August 18, 2026</p>
 
     <p>This Privacy Policy explains how <strong>Reviora</strong> ("we", "our", "us"), a mobile
     application provided by <strong>Barbaros İhtiyar</strong> (the "Developer"), collects, uses,
@@ -58,25 +58,35 @@
     that lets you repair, enhance, colorize, and restore your photographs.</p>
 
     <p>By downloading, installing, or using Reviora, you acknowledge that you have read and
-    understood this Privacy Policy.</p>
+    understood this Privacy Policy. Where required, Reviora asks for your explicit permission before
+    your selected photo is shared with a third-party AI processing provider.</p>
 
     <hr>
 
     <h2>1. Information We Collect</h2>
 
     <h3>1.1. Photos You Upload</h3>
-    <p>The core function of Reviora requires you to upload photos so they can be processed by AI
-    models. When you start a restoration, enhancement, colorization, or full-restore job:</p>
+    <p>The core function of Reviora requires you to select photos so they can be processed by AI
+    models. Before a selected photo is transmitted to our third-party AI processing provider,
+    <strong>Replicate, Inc.</strong>, Reviora displays a consent notice that explains what data will
+    be shared, who it will be shared with, and why the sharing is necessary.</p>
     <ul>
-      <li>Your selected photo is uploaded to our secure cloud storage.</li>
-      <li>The photo is sent to a third-party AI processing provider that runs the model and
-      returns a processed result.</li>
-      <li>The original (input) and the processed (output) images are stored so the app can show
+      <li>The data shared is the specific photo you select for an AI-powered restoration,
+      enhancement, colorization, or full-restore request.</li>
+      <li>Your selected photo may first be uploaded to our secure cloud storage
+      (<strong>Cloudflare R2</strong>) so it can be made available for processing.</li>
+      <li>Replicate receives the selected photo, or a time-limited secure link to that photo,
+      solely to run the AI model required for the feature you requested.</li>
+      <li>Reviora does <strong>not</strong> send the selected photo to Replicate unless you give
+      explicit permission through the in-app consent prompt.</li>
+      <li>If you choose <strong>Don't Allow</strong>, the photo is not sent to Replicate and the
+      AI processing request does not begin.</li>
+      <li>The original (input) and processed (output) images may be stored so the app can show
       your results, before/after comparisons, and let you download or re-access them.</li>
     </ul>
-    <div class="note">We process your photos solely to provide the restoration features you
-    request. We do <strong>not</strong> use your photos to train AI models, and we do
-    <strong>not</strong> use them for advertising or profiling.</div>
+    <div class="note">We process your photos solely to provide the AI-powered photo features you
+    request. We do <strong>not</strong> use your photos for advertising or profiling. We also do
+    not use your photos to train our own AI models.</div>
 
     <h3>1.2. Account &amp; Identifiers</h3>
     <p>Reviora uses lightweight authentication so your photos and subscription stay tied to your
@@ -113,7 +123,26 @@
 
     <hr>
 
-    <h2>3. How We Use Your Information</h2>
+    <h2>3. AI Processing Consent</h2>
+    <p>Reviora uses <strong>Replicate, Inc.</strong> as a third-party AI processing provider for
+    certain photo restoration and editing features. Before any selected photo is transmitted to
+    Replicate, the app asks for your explicit permission.</p>
+    <p>The in-app consent notice clearly explains:</p>
+    <ul>
+      <li><strong>What data is shared:</strong> the photo you selected for processing,</li>
+      <li><strong>Who receives it:</strong> Replicate, Inc.,</li>
+      <li><strong>Why it is shared:</strong> to perform the AI-powered photo processing feature
+      you requested.</li>
+    </ul>
+    <p>If you grant permission, Reviora may transmit the selected photo, or a time-limited secure
+    link to that photo, to Replicate for processing. If you decline permission, Reviora will not
+    transmit the selected photo to Replicate and the requested AI operation will not start.</p>
+    <p>You may withdraw your consent for future AI processing at any time through the app where
+    such controls are available, or by contacting us using the details in this Privacy Policy.</p>
+
+    <hr>
+
+    <h2>4. How We Use Your Information</h2>
     <ul>
       <li>To provide the core features (restore, HD enhance, colorize, full restore),</li>
       <li>To store and display your input/output images and before/after comparisons,</li>
@@ -126,30 +155,32 @@
 
     <hr>
 
-    <h2>4. Third-Party Service Providers</h2>
+    <h2>5. Third-Party Service Providers</h2>
     <p>To operate Reviora we rely on the following processors, each governed by its own privacy
     policy:</p>
     <table>
       <tr><th>Provider</th><th>Purpose</th><th>Data involved</th></tr>
       <tr><td>Cloud storage (Cloudflare R2)</td><td>Store input/output images</td><td>Your photos, account identifier</td></tr>
-      <tr><td>AI processing provider (Replicate)</td><td>Run AI models on your photo</td><td>The photo being processed</td></tr>
+      <tr><td>Replicate, Inc.</td><td>Run AI models for the photo feature you request, only after your explicit consent</td><td>The selected photo or a time-limited secure link to that photo</td></tr>
       <tr><td>RevenueCat</td><td>Subscription management</td><td>Subscription status, purchase identifiers</td></tr>
       <tr><td>Apple App Store / Google Play</td><td>Payments &amp; distribution</td><td>Billing handled by the store</td></tr>
       <tr><td>Google AdMob</td><td>In-app advertising</td><td>Advertising identifier (only with your tracking permission); never your photos</td></tr>
     </table>
-    <p>We do not sell your personal data.</p>
+    <p>We do not sell your personal data. We require service providers that process personal data
+    on our behalf to use it only for the services they provide to Reviora and to maintain
+    appropriate privacy and security protections.</p>
 
     <hr>
 
-    <h2>5. Face Data</h2>
+    <h2>6. Face Data</h2>
     <p>Reviora does <strong>not</strong> collect, store, or use biometric identifiers or facial
     recognition data. The app does not perform face detection or facial mapping, and it does not
     extract facial geometry, faceprints, or any data that could be used to identify a person.</p>
     <p>Photos you select may contain faces. These photos are processed solely to perform the
     enhancement you request (for example photo restoration, colorization, or face retouching).
-    Processing is performed by our AI provider, <strong>Replicate, Inc.</strong> (USA), which
-    receives a time-limited secure link to your photo, generates the enhanced result, and does not
-    use your photos to train its models. Your original and enhanced photos are stored in our
+    Processing is performed by our AI provider, <strong>Replicate, Inc.</strong> (USA), only
+    after you provide explicit consent in the app. Replicate receives the selected photo or a
+    time-limited secure link to your photo solely to generate the requested result. Your original and enhanced photos are stored in our
     private cloud storage (Cloudflare R2) and are linked only to your anonymous account — we do
     not collect your name or email address for this purpose.</p>
     <p>Your photos are retained while your account is active. You can delete any photo, or your
@@ -159,7 +190,7 @@
 
     <hr>
 
-    <h2>6. Data Retention</h2>
+    <h2>7. Data Retention</h2>
     <p>Your uploaded photos and processed results are retained while your account is active so you
     can re-access them. You may delete individual results in the app. When you request account
     deletion (or after a prolonged period of inactivity), your stored input and output images and
@@ -168,7 +199,7 @@
 
     <hr>
 
-    <h2>7. Data Security &amp; International Transfers</h2>
+    <h2>8. Data Security &amp; International Transfers</h2>
     <p>We use reasonable technical and organizational measures (encrypted transit, access-restricted
     storage, scoped upload URLs) to protect your data. Because our providers operate globally, your
     data may be processed in countries other than your own; we rely on appropriate safeguards for
@@ -176,28 +207,28 @@
 
     <hr>
 
-    <h2>8. Your Rights</h2>
+    <h2>9. Your Rights</h2>
     <p>Depending on your jurisdiction, you may have the right to access, correct, delete, or export
     your data, to object to or restrict processing, or to withdraw consent. To exercise these
     rights, contact us at the address below.</p>
 
     <hr>
 
-    <h2>9. Children’s Privacy</h2>
+    <h2>10. Children’s Privacy</h2>
     <p>Reviora is not directed to children under 13 (or the minimum age required in your country).
     We do not knowingly collect data from children. If you believe a child has provided us data,
     please contact us so we can delete it.</p>
 
     <hr>
 
-    <h2>10. Changes to This Policy</h2>
+    <h2>11. Changes to This Policy</h2>
     <p>We may update this Privacy Policy from time to time. The current version becomes effective
     as soon as it is published. Continued use of Reviora after changes constitutes acceptance of the
     updated policy.</p>
 
     <hr>
 
-    <h2>11. Contact</h2>
+    <h2>12. Contact</h2>
     <p>For any questions or requests regarding this Privacy Policy:</p>
     <p><strong>Email:</strong> <a href="mailto:barbaros.ihtiyar.developerr@gmail.com">barbaros.ihtiyar.developerr@gmail.com</a></p>
 
